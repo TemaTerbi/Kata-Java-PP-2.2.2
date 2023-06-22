@@ -28,8 +28,6 @@ public class CarDao {
         if (count > 5) {
             return carList;
         }
-        List<Car> newList = new ArrayList<>();
-        newList = carList.subList(0, count);
-        return newList;
+        return carList.subList(0, count);
     }
 }
