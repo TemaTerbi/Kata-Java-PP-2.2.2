@@ -24,17 +24,8 @@ public class CarController {
     }
 
     @GetMapping(value = "/cars")
-    public String getListCar(Model model, @RequestParam Optional<Integer> count) {
-        if (!count.isEmpty()) {
-            if (count.orElse(0) < 5) {
-                model.addAttribute("carList", carDao.anyCount(count.orElse(0)));
-                return "car";
-            } else {
-                model.addAttribute("carList", carDao.index());
-                return "car";
-            }
-        }
-        model.addAttribute("carList", carDao.index());
+    public String getListCar(Model model, @RequestParam(required = false, defaultValue = "5") int count) {
+        model.addAttribute("carList", carDao.anyCount(count));
         return "car";
     }
 }

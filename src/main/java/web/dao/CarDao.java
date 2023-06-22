@@ -8,7 +8,7 @@ import java.util.List;
 
 @Component
 public class CarDao {
-    private final List<Car> carList;
+    private List<Car> carList;
 
     {
         carList = new ArrayList<>();
@@ -25,12 +25,11 @@ public class CarDao {
     }
 
     public List<Car> anyCount(int count) {
-        List<Car> newList = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            newList.add(carList.get(i));
+        if (count > 5) {
+            return carList;
         }
-
+        List<Car> newList = new ArrayList<>();
+        newList = carList.subList(0, count);
         return newList;
     }
 }
